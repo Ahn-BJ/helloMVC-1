@@ -9,23 +9,27 @@ public class CustomerService {
 
 	private Map<String, Customer> customers;
 
-	public CustomerService() {
+	private static final CustomerService instance = new CustomerService();
+	
+	private CustomerService() {
 		customers = new HashMap<String, Customer>();
-		addCustomer(new Customer("id001","pw001", "Alice", "alice.hansung.ac.kr"));
-		addCustomer(new Customer("id002","pw002", "Bob", "Bob.hansung.ac.kr"));
-		addCustomer(new Customer("id003","pw003", "Charlie", "Charlie.hansung.ac.kr"));
-		addCustomer(new Customer("id004","pw004", "David", "David.hansung.ac.kr"));
-		addCustomer(new Customer("id005","pw005", "Edison", "Edison.hansung.ac.kr"));
-
 	}
-
+	
+	public static CustomerService getInstance(){
+		return instance;
+	}
+	
 	public void addCustomer(Customer customer) {
+		System.out.println("user registered" + customer.getId() + " " + customer.getPassword());
 		customers.put(customer.getId(),customer);
 	}
 	
-	public Customer findCustomer(String id){
-		if(id != null)
+	public Customer login(String id, String password){
+		//System.out.println("get id = " + id + "get pw =" + password);
+		//System.out.println("real id = " + customers.get(id).getId() + "real pw =" + customers.get(id).getPassword());
+		if(id != null && customers.get(id.toLowerCase()).getPassword().equals(password)){
 			return(customers.get(id.toLowerCase()));
+		}
 		else
 			return null;
 	}

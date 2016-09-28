@@ -32,25 +32,23 @@ public class DoLogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String customerId = request.getParameter("customerId");
-		String passWord = request.getParameter("passWord");
-		
-		CustomerService service = new CustomerService();
-		Customer customer = service.findCustomer(customerId);
+		String customerId = request.getParameter("id");
+		String passWord = request.getParameter("password");
+		System.out.println("login id : " + customerId + "pw : " + passWord);
+		CustomerService service =  CustomerService.getInstance();
+		Customer customer = service.login(customerId, passWord);
 		request.setAttribute("customer", customer);
 		
 		//we can iterate over lists using foreach in jstl
-		List<Customer> customers = new ArrayList<>();
-		customers.add(new Customer("id006","pw006","kim","kim@hansung.ac.kr"));
-		customers.add(new Customer("id007","pw007","Lee","Lee@hansung.ac.kr"));
-		customers.add(new Customer("id008","pw008","Park","Park@hansung.ac.kr"));
-		request.setAttribute("customerList", customers);
+		//List<Customer> customers = new ArrayList<>();
+
+		//request.setAttribute("customerList", customers);
 		String page;
 		
 		if(customer == null)
-			page="/view/error.jsp";
+			page="/view/loginFail.jsp";
 		else
 			page="/view/success.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);

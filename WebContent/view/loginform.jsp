@@ -6,12 +6,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+
+<style>
+	div.ex{
+		text-align:center;
+		width:35%;
+		padding:10px;
+		border:5px solid grey;
+		margin:20px;
+	}
+</style>
+
 <body>
-	this is login form page
-	<form action="/helloMVC/doLogin" method="get">
-		<input type = "text" name = "customerId"/></br>
-		<input type = "password" name = "passWord"/></br>
-		<input type = "submit" value="login"/>
-	</form>
+	<h1>Login Form</h1>
+	<div class="ex">
+		<form action="/helloMVC/doLogin" method="post">
+			<table cellpadding="5">
+				<tr>
+					<td>ID</td>
+					<td><input type="text" name="id"/></td>
+				</tr>
+				<tr>
+					<td>PW</td>
+					<td><input type="password" name="password"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type = "submit" value="login"/></td>
+				</tr>
+			</table>	
+		</form>
+	</div>
 </body>
 </html>

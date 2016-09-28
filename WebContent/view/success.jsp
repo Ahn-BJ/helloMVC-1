@@ -8,23 +8,7 @@
 <title>welcome!</title>
 </head>
 <body>
-	<%-- JSP Expression Language --%>
-	<ul>
-		<li> Id : ${customer.id }</li>
-		<li> Name : ${customer.name }</li>
-		<li> Email : ${customer.email }</li>
-		
-	</ul>
-	
-	<%-- JSTL --%>
-	<table style="border: 1px solid red; padding:10px;">
-		<c:forEach var="customer" items="${customerList }">
-			<tr>
-				<td> ${customer.id }</td>
-				<td> ${customer.name }</td>
-				<td> ${customer.email }</td>
-			</tr>
-		</c:forEach>
-	</table>
+	${customer.name } logged in successfully.
+	<p> <a href="/helloMVC/index.jsp"> go to home page</a>
 </body>
 </html>
